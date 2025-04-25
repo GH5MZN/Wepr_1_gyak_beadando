@@ -1,0 +1,54 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Főoldal - Web-programozás-1 Gyakorlat feladat</title>
+    <link rel="stylesheet" href="style_gyakmain.css">
+</head>
+<body>
+
+    <header>
+        <div class="left">
+            <div class="login-box">
+                <?php if (isset($_SESSION['user'])): ?>
+                    <!-- Ha be van jelentkezve -->
+                    <p>Bejelentkezett: <?= htmlspecialchars($_SESSION['user']['last_name']) ?> <?= htmlspecialchars($_SESSION['user']['first_name']) ?> (<?= htmlspecialchars($_SESSION['user']['username']) ?>)</p>
+                <?php else: ?>
+                    <!-- Ha nincs bejelentkezve -->
+                    <form action="login.php" method="POST">
+                        <label for="username">Felhasználónév:</label><br>
+                        <input type="text" id="username" name="username" required><br><br>
+                        <label for="password">Jelszó:</label><br>
+                        <input type="password" id="password" name="password" required><br><br>
+                        <input type="submit" value="Bejelentkezés">
+                    </form>
+                    <a href="regisztral.html" class="register-button">Regisztráljon itt</a>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="center">
+            <h1>Web-programozás-1 Gyakorlat Házi feladat</h1>
+            <button onclick="window.location.href='index.html'">Váltás az Előadás munkára</button>
+            <nav>
+                <ul class="menu">
+                    <li><a href="gyak_index.html">Főoldal</a></li>
+                    <li><a href="receptek.php">Receptek</a></li>
+                    <li><a href="kapcsolat.html">Kapcsolat</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/FeCqEhZ0uUE?si=vlTGCWiOCliR0ed8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <footer>
+        <p>Készítette: Barcza Mónika és Jagicza Bence István, Neptun kód: VCVIAB és GH5MZN</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<?php if (isset($_GET['uzenet'])): ?>
+    <p><?= htmlspecialchars($_GET['uzenet']) ?></p>
+<?php endif; ?>
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regisztráció</title>
+    <link rel="stylesheet" href="style_main.css">
+</head>
+<body>
+    <h1>Regisztráció</h1>
+    <form action="regisztral.php" method="POST">
+        <label for="felhasznalo">Felhasználónév:</label>
+        <input type="text" id="felhasznalo" name="felhasznalo" required><br><br>
+
+        <label for="jelszo">Jelszó:</label>
+        <input type="password" id="jelszo" name="jelszo" required><br><br>
+
+        <label for="vezeteknev">Vezetéknév:</label>
+        <input type="text" id="vezeteknev" name="vezeteknev" required><br><br>
+
+        <label for="utonev">Utónév:</label>
+        <input type="text" id="utonev" name="utonev" required><br><br>
+
+        <button type="submit">Regisztráció</button>
+    </form>
+</body>
+</html>
