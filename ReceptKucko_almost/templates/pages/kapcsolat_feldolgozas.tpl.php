@@ -4,9 +4,16 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 try {
-    $dbh = new PDO('mysql:host=localhost;dbname=receptek_users', 'root', '', [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-    ]);
+    $dbh = new PDO(
+        'mysql:host=127.0.0.1;dbname=barcza17;charset=utf8',
+        'barcza17',
+        'Nethely_123',
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        ]
+    );
+    
+    
 
     $sql = "SELECT kapcsolatfelvetel.uzenet, kapcsolatfelvetel.kuldes_ideje, 
                    IFNULL(felhasznalok.felhasznalonev, 'Vendég') AS kuldo
@@ -21,22 +28,24 @@ try {
 }
 ?>
 
-<h2>Kapott üzenetek</h2>
-<table border="1" style="width: 100%; border-collapse: collapse;">
-    <thead>
-        <tr>
-            <th>Küldő</th>
-            <th>Üzenet</th>
-            <th>Küldés ideje</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($uzenetek as $uzenet) { ?>
+<div class="uzenetek-container">
+    <h2>Kapott üzenetek</h2>
+    <table>
+        <thead>
             <tr>
-                <td><?= htmlspecialchars($uzenet['kuldo']) ?></td>
-                <td><?= htmlspecialchars($uzenet['uzenet']) ?></td>
-                <td><?= htmlspecialchars($uzenet['kuldes_ideje']) ?></td>
+                <th>Küldő</th>
+                <th>Üzenet</th>
+                <th>Küldés ideje</th>
             </tr>
-        <?php } ?>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <?php foreach ($uzenetek as $uzenet) { ?>
+                <tr>
+                    <td><?= htmlspecialchars($uzenet['kuldo']) ?></td>
+                    <td><?= htmlspecialchars($uzenet['uzenet']) ?></td>
+                    <td><?= htmlspecialchars($uzenet['kuldes_ideje']) ?></td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
